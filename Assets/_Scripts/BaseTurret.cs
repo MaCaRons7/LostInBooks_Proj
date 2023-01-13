@@ -38,8 +38,7 @@ public class BaseTurret : MonoBehaviour,IFireable
                     return null;
                 }
             }
-
-            return null;
+            
         }
     }
     

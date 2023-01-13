@@ -13,6 +13,7 @@ public class FlameAddtion : MonoBehaviour
         {
             Debug.Log("更改炮弹属性");
             flyingShell.ChangeShellType(ShellType.FlameArrow);
+            flyingShell.GetComponent<Renderer>().material.color = Color.red;
         }
     }
 }
