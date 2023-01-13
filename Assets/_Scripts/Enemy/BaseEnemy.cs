@@ -6,15 +6,25 @@ public class BaseEnemy : MonoBehaviour
 {
     public int hP;
     public int coin;
-    public float moveSpeed;
+    public Vector3 moveSpeedTime;
     public float attackDamage;
     public float attackRange;
     public float attackCD;
     public float skillCD;
+    protected Vector3 moveSpeed;
     private float nowSkillCD;
     private enum DestroyType { }
 
     public virtual void UseSkill() { }
+
+    private void Start()
+    {
+        float x = 0, y = 0, z = 0;
+        if (moveSpeedTime.x != 0) x = 1.0f / moveSpeedTime.x;
+        if (moveSpeedTime.y != 0) y = 1.0f / moveSpeedTime.y;
+        if (moveSpeedTime.z != 0) z = 1.0f / moveSpeedTime.z;
+        moveSpeed = new Vector3(x, y, z);
+    }
 
     private void Update()
     {
@@ -23,7 +33,6 @@ public class BaseEnemy : MonoBehaviour
         if (nowSkillCD >= skillCD)
         {
             UseSkill();
-            nowSkillCD = 0;
             nowSkillCD = 0;
         }
     }
@@ -36,8 +45,7 @@ public class BaseEnemy : MonoBehaviour
 
     private void Move()
     {
-        transform.position = new Vector3(transform.position.x - moveSpeed * Time.deltaTime, 
-                                               transform.position.y, transform.position.z);
+        transform.position = transform.position + moveSpeed * Time.deltaTime;
     }
 
     private void AttackWall()

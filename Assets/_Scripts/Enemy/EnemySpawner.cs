@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float baseX;
-    public float minnZ;
-    public float maxnZ;
+    public Vector3 corner1;
+    public Vector3 corner2;
     public bool isStop;
     public GameObject[] enemys;
     public static EnemySpawner instance;
@@ -17,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     private float nowWaveTime;
     private float waitTime;
     private EnemyHeap heap = new EnemyHeap();
-    public enum EnemyType { Enemy_1,Enemy_2 };
+    public enum EnemyType { Enemy_Normal,Enemy_Sheild, Enemy_TrojanHorse };
     [Serializable]
     public struct Controller 
     {
@@ -34,6 +33,12 @@ public class EnemySpawner : MonoBehaviour
     }
     public Wave[] waves;
 
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
+
     private void Update()
     {
         if(isStop) return;
@@ -42,6 +47,7 @@ public class EnemySpawner : MonoBehaviour
             waitTime -= Time.deltaTime;
             return;
         }
+        else waitTime = 0;
         if (waves.Length <= nowWave || waves[nowWave].controllers.Length <= 0) return;
         nowWaveTime += Time.deltaTime;
         while (nowController < waves[nowWave].controllers.Length && waves[nowWave].controllers[nowController].beginTime <= nowWaveTime)
@@ -67,7 +73,8 @@ public class EnemySpawner : MonoBehaviour
     private void RandomInstantiateEnemy(EnemyType enemy)
     {
         GameObject x = Instantiate(enemys[(int)enemy]);
-        x.transform.position = new Vector3(baseX, 0, UnityEngine.Random.Range(minnZ, maxnZ));
+        x.transform.position = new Vector3(UnityEngine.Random.Range(corner1.x, corner2.x),
+            UnityEngine.Random.Range(corner1.y, corner2.y), UnityEngine.Random.Range(corner1.z, corner2.z));
     }
 
     public void NewWaveBegin()
@@ -84,6 +91,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void Wait(float x)
     {
-        waitTime = x;
+        waitTime += x;
     }
 }
