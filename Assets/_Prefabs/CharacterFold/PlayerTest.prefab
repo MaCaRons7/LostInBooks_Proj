@@ -12293,6 +12293,7 @@ GameObject:
   - component: {fileID: 2662352403415636464}
   - component: {fileID: 1445703250}
   - component: {fileID: 1445703252}
+  - component: {fileID: 4635527176157489642}
   m_Layer: 0
   m_Name: PlayerTest
   m_TagString: Untagged
@@ -12356,18 +12357,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerAnimator: {fileID: 2662352403415636464}
-  m_raycastMask:
+  m_raycastWallMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1
   CCollider: {fileID: 1445703252}
   MoveSpeedMultiplier: 50
-  skin: 0.31
-  StepOffset: 0
-  SlopeLimit: 0
-  RunSpeed: 0
-  jumpTimes: 0
-  velocity: {x: 0, y: 0, z: 0}
+  skin: 0.05
+  StepOffset: 0.31
+  SlopeLimit: 60
+  RunSpeed: 2.5
   m_inputDir: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!136 &1445703252
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12382,6 +12382,25 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &4635527176157489642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744142333264697648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c59afc78344602a80743c44449efcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movableLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  nextMovement: 0
+  checkDistance: 1
+  interactAngle: 45
+  movableObjectHeight: 0.8
 --- !u!1 &8898149861150862134
 GameObject:
   m_ObjectHideFlags: 0
