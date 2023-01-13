@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public float baseX;
+    public float minnZ;
+    public float maxnZ;
     public bool isStop;
     public GameObject[] enemys;
     public static EnemySpawner instance;
@@ -64,7 +67,7 @@ public class EnemySpawner : MonoBehaviour
     private void RandomInstantiateEnemy(EnemyType enemy)
     {
         GameObject x = Instantiate(enemys[(int)enemy]);
-        x.transform.position = new Vector3(5, 0, UnityEngine.Random.Range(-3,3));
+        x.transform.position = new Vector3(baseX, 0, UnityEngine.Random.Range(minnZ, maxnZ));
     }
 
     public void NewWaveBegin()

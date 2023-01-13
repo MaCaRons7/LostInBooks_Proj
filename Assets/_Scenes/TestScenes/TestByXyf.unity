@@ -330,12 +330,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daef7a0e5bfa9c1428a0483b53d62768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseX: 5
+  minnZ: -3
+  maxnZ: 3
   isStop: 0
   enemys:
   - {fileID: 6903487417225718433, guid: 69ffd6e70633d044ca81b36938011a35, type: 3}
   - {fileID: 6985706142951886903, guid: 01d275cf6e2e75d40a953c73b90f1dc5, type: 3}
   waves:
-  - controllers:
+  - waitingTime: 0
+    controllers:
     - num: 3
       beginTime: 0
       deltaTime: 1
@@ -344,7 +348,8 @@ MonoBehaviour:
       beginTime: 0
       deltaTime: 0.7
       enemyType: 1
-  - controllers:
+  - waitingTime: 3
+    controllers:
     - num: 3
       beginTime: 0
       deltaTime: 1
